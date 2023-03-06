@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void index(int*arr, int len, int index,int val){
+    int arr1[len+1];
+    for(int i=0; i<len+1;i++){
+        if(i<index){
+            arr1[i] = arr[i];
+        }
+        else if (i>index)
+        {
+            arr1[i] = arr[++index];
+        }
+        else
+        {
+            arr1[index] = val;
+        }
+    }
+    free(arr);
+    arr = arr1;
+
+}
+
+int main(){
+    int l;
+    printf("Enter the length of array");
+    scanf("%d", &l);
+
+    int arr[l];
+    int index, value;
+
+    for(int i = 0 ;i<l;i++){
+        printf("Enter the length of array[%d] : ",i);
+        scanf("%d", &arr[i]);
+    }
+    insert(&arr,l,0,10);
+    for(int i = 0 ;i<l;i++){
+        printf("Enter the length of array: %d",arr[i]);
+    }
+}
