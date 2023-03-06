@@ -2,9 +2,9 @@
 
 int main(){
     int i , j;
-    puts("Pls enter no of row : ");
+    printf("Pls enter no of row : ");
     scanf("%d",&i);
-    puts("Pls enter no of col : ");
+    printf("Pls enter no of col : ");
     scanf("%d",&j);
     return 0;
 }
