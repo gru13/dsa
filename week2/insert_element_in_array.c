@@ -25,6 +25,8 @@ int main(){
     printf("Ënter value : ");
     scanf("%d",value);
 
+    arr[index1][index2] = value;
+
     for(int a = 0; a<i; a++){
         for(int b = 0; b<j; b++){
         printf("Ënter value of %d\n", arr[a][b]);
