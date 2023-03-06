@@ -11,7 +11,7 @@ int main(){
 
     for(int a = 0; a<i; a++){
         for(int b = 0; b<j; b++){
-        printf("Ënter value of arr[%d][%d]", i,j);
+        printf("Ënter value of arr[%d][%d]", a,b);
         scanf("%d", &arr[a][b]);
         }
     }
