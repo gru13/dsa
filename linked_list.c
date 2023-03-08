@@ -14,6 +14,8 @@ void display(struct Node *head){
     }
 }
 
+
+
 int len(struct Node* head){
     struct Node *rmp = head;
     int length = 0;
@@ -23,15 +25,19 @@ int len(struct Node* head){
     }
     return length;
 }
+
+
 void insert(int index,int value,struct Node *head){
     int length = len(head);
     struct Node *tmp = head;
+
     struct Node *new = (struct Node*)malloc(sizeof(struct Node*));
     new->value = value;
+    
     if (index > length || index < 0){printf("can't inserted due to lenght");}
     else{
         if(index == 0){
-            new->next = tmp;
+            new->next = head;
             head = new;
             display(head);
         }
@@ -84,7 +90,7 @@ int main(){
     third->value = 3;
     third->next = NULL;  
     
-    insert(len(head),4,head);
+    insert(0,4,head);
     printf("\t%d\n",len(head));
     display(head);
 }
