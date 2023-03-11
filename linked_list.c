@@ -26,6 +26,23 @@ int len(struct Node* head){
     return length;
 }
 
+void delete(int index, struct Node *head){
+    int length = len(head);
+    struct Node* tmp = 
+    if (index > length || index < 0){printf("can't inserted due to lenght");}
+    else{
+        if(index ==0){
+            head = head->next;
+        }
+        else if(index == length - 1){
+            length--;
+            while(length--){
+                tmp = tmp->next;
+            }
+            tmp->next = NULL;
+        }
+    }
+}
 
 void insert(int index,int value,struct Node *head){
     int length = len(head);
@@ -90,7 +107,7 @@ int main(){
     third->value = 3;
     third->next = NULL;  
     
-    insert(0,4,head);
+    delete(2,head);
     printf("\t%d\n",len(head));
     display(head);
 }
