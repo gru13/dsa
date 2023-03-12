@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void insert(int *arr, int len, int index,int val){
+int* insert(int *arr, int len, int index,int val){
     int *arr1 = malloc((len+1)*sizeof(int));
     int o = index;
     for(int i=0; i<len+1;i++){
@@ -19,12 +19,8 @@ void insert(int *arr, int len, int index,int val){
             arr1[index] = val;
         }
     }
-    for(int i = 0 ;i<len+1;i++){
-        printf("Enter the length of array: %d\n",arr1[i]);
-    }
     free(arr);
-    arr = arr1;
-    arr1 = NULL;
+    return arr1;
 
 }
 
@@ -37,10 +33,15 @@ int main(){
     int index, value;
 
     for(int i = 0 ;i<l;i++){
-        printf("Enter the length of array[%d] : ",i);
+        printf("Enter the vslue of array[%d] : ",i);
         scanf("%d", &arr[i]);
     }
-    insert(arr,l,0,199);
-    printf("%d\n",arr[0]);
+    arr = insert(arr,l,1,199);
+    printf("%d\n",arr[2]);
+    l++;
+    printf("array after inserting :\n");
+    for(int i = 0 ;i<l;i++){
+        printf("%d\t",arr[i]);
+    }
     return 0;
 }
