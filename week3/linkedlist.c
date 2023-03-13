@@ -29,6 +29,34 @@ void display(struct Node* head){
     printf("NULL\n");
 }
 
+struct Node* insert (struct Node* head, int index, int val){
+    struct Node* newNode  = (struct Node*) malloc(sizeof(struct Node*));
+    newNode->data = val;
+    int length = len(head);
+    if(index == 0){
+        newNode->next = head;
+        head = newNode; 
+    }
+    else if(index == length-1) {
+        struct Node* tmp = head;
+        while (tmp->next != NULL)
+        {
+            tmp=tmp->next;
+        }
+        tmp->next=newNode;
+        newNode->next=NULL; 
+    }
+    else if (index<length && index>0)
+    {
+        puts("ghur");
+    }
+    else{
+        printf("Can't be inserted");
+    }
+    return head;
+
+}
+
 int main(){
     struct Node* first = (struct Node*)malloc(sizeof(struct Node*));
     struct Node* second = (struct Node*)malloc(sizeof(struct Node*));
@@ -47,6 +75,8 @@ int main(){
 
     struct Node* head = first;
 
+    display(head);
+    head = insert(head,2,4);
     display(head);
     printf("%d\n",len(head));
     return 0;
