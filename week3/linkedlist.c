@@ -120,5 +120,24 @@ int demo(){
 
 int main(){
     //  creation of menu;
+    int len_ll,val;
+    printf("Creating lined list\nenter length of linked list : ");
+    scanf("%d",&len_ll);
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node*));
+    struct Node* tmp = head;
+
+    for(int i = 0;i<len_ll;i++){
+        printf("enter value of index %d : ",i);
+        scanf("%d",&val);
+        tmp->data = val;
+        if(i != len_ll-1){
+        tmp->next = (struct Node*)malloc(sizeof(struct Node*));
+        tmp = tmp->next;
+        }
+    }
+    tmp->next = NULL;
+    display(head);
+    printf("%d",len(head));
+    // demo();
     
 }
