@@ -28,7 +28,7 @@ int len(struct Node* head){
 
 void delete(int index, struct Node *head){
     int length = len(head);
-    struct Node* tmp = 
+    struct Node* tmp = head;
     if (index > length || index < 0){printf("can't inserted due to lenght");}
     else{
         if(index ==0){
