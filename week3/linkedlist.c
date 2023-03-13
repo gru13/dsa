@@ -48,7 +48,13 @@ struct Node* insert (struct Node* head, int index, int val){
     }
     else if (index<length && index>0)
     {
-        puts("ghur");
+        struct Node* tmp = head;
+        for(int i = 0;i<index;i++){
+            tmp = tmp->next;
+        }
+        struct Node *ext = tmp->next;
+        tmp->next = newNode;
+        newNode->next = ext; 
     }
     else{
         printf("Can't be inserted");
