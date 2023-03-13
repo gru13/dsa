@@ -37,7 +37,7 @@ struct Node* insert (struct Node* head, int index, int val){
         newNode->next = head;
         head = newNode; 
     }
-    else if(index == length-1) {
+    else if(index == length-1 || index == -1) {
         struct Node* tmp = head;
         while (tmp->next != NULL)
         {
@@ -65,6 +65,10 @@ struct Node* insert (struct Node* head, int index, int val){
 
 struct Node* delete (struct Node* head, int index){
     int length = len(head);
+    if(index == -1){
+        index = length - 1;
+        puts("heojgnun");
+    }
     if(index == 0){
         head = head->next;
     }
@@ -136,8 +140,51 @@ int main(){
         }
     }
     tmp->next = NULL;
-    display(head);
-    printf("%d",len(head));
-    // demo();
+    int option,exit_status = 0;
+    // printf("%d\n",len(head));
+    do{
+        printf("Select the below option:\n\n");
+        printf("1.display the linked list\n");
+        printf("2.insertion\n");
+        printf("3.deletion\n");
+        printf("4.length of linked list\n");
+        printf("5.exit\n\nEnter Your option:");
+        scanf("%d",&option);
+        printf("\n--------------------------------------------------------------\n\n");
+        int index,val;
+        switch (option)
+        {
+        case 1:
+            display(head);
+            break;
+        case 2:
+            printf("(for appending enter -1)\nEnter the index of inserting : ");
+            scanf("%d",&index);
+            printf("Ënter the value for inserting : ");
+            scanf("%d",&val);
+            head = insert(head,index,val);
+            break;
+        case 3:
+            printf("(for pop enter -1)\nEnter the index of deletion : ");
+            scanf("%d",&index);
+            head = delete(head,index);
+            break;
+        case 4:
+            printf("\nlength of linked list is %d\n",len(head));
+            break;
+        case 5:
+            printf("exiting.....\n");
+            exit_status = 1;
+            break;
+        
+        default:
+            printf("enter the valid option\n");
+            break;
+        }
+        printf("\n--------------------------------------------------------------\n\n");
+    }
+    while(exit_status != 1);
+    return 0;
+    
     
 }
