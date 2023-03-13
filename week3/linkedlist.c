@@ -93,7 +93,7 @@ struct Node* delete (struct Node* head, int index){
 }
 
 
-int main(){
+int demo(){
     struct Node* first = (struct Node*)malloc(sizeof(struct Node*));
     struct Node* second = (struct Node*)malloc(sizeof(struct Node*));
     struct Node* third = (struct Node*)malloc(sizeof(struct Node*));
@@ -116,4 +116,9 @@ int main(){
     display(head);
     printf("%d\n",len(head));
     return 0;
+}
+
+int main(){
+    //  creation of menu;
+    
 }
