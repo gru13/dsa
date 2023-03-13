@@ -49,7 +49,7 @@ struct Node* insert (struct Node* head, int index, int val){
     else if (index<length && index>0)
     {
         struct Node* tmp = head;
-        for(int i = 0;i<index;i++){
+        for(int i = 0;i<index-1;i++){
             tmp = tmp->next;
         }
         struct Node *ext = tmp->next;
@@ -65,20 +65,18 @@ struct Node* insert (struct Node* head, int index, int val){
 
 struct Node* delete (struct Node* head, int index){
     int length = len(head);
-    if(index == -1){
-        index = length - 1;
-        puts("heojgnun");
-    }
     if(index == 0){
         head = head->next;
     }
-    else if(index == length-1) {
+    else if(index == length-1 || index == -1) {
         struct Node* tmp = head;
+        display(head);
         while (tmp->next != NULL)
         {
             tmp=tmp->next;
         }
         tmp->next=NULL; 
+        display(head);
     }
     else if (index<length && index>0)
     {
