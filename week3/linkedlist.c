@@ -1,4 +1,4 @@
-ṇṆ#include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 
 struct Node {
@@ -70,18 +70,16 @@ struct Node* delete (struct Node* head, int index){
     }
     else if(index == length-1 || index == -1) {
         struct Node* tmp = head;
-        display(head);
-        while (tmp->next != NULL)
+        while (tmp->next->next != NULL)
         {
             tmp=tmp->next;
         }
         tmp->next=NULL; 
-        display(head);
     }
     else if (index<length && index>0)
     {
         struct Node* tmp = head;
-        for(int i = 0;i<index;i++){
+        for(int i = 0;i<index-1;i++){
             tmp = tmp->next;
         }
         tmp->next = tmp->next->next;
