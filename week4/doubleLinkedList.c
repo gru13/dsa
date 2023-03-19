@@ -88,6 +88,7 @@ struct Node* removed(int index, struct Node* head){
     }
     return head;
 }
+
 int main(){
     struct Node* head = (struct Node*)malloc(sizeof(struct Node*));
     head->prev = NULL;
