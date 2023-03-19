@@ -6,6 +6,7 @@ struct Node{
     struct Node* prev;
     struct Node* next;
 };
+
 int len(struct Node * head){
     int len = 0;
     struct Node* tmp = head;
@@ -14,8 +15,8 @@ int len(struct Node * head){
         tmp = tmp->next;
     }
     return len;
-
 }
+
 void display(struct Node* head){
     struct Node* tmp = head;
     while(tmp != NULL){
@@ -82,7 +83,7 @@ struct Node* removed(int index, struct Node* head){
         while(index--){
             tmp = tmp->next;
         }
-        tmp->next->next = tmp;
+        tmp->next->next->prev = tmp;
         tmp->next = tmp->next->next;
     }
     return head;
@@ -108,7 +109,7 @@ int main(){
     }
     display(head);
     // head = insert(2,100,head);
-    head = removed(4,head);
+    head = removed(3,head);
     display(head);
 
 }
