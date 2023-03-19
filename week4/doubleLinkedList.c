@@ -71,9 +71,8 @@ struct Node* insert(int index, int val, struct Node* head){
 }
 
 struct Node* removed(int index, struct Node* head){
-    if (head == NULL){
-        return NULL;
-    }
+    if (head == NULL){return NULL;} // empty
+
     if(index == 0){
         head = head->next;
         head->prev = NULL;
