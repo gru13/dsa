@@ -26,7 +26,7 @@ void display(struct Node* head){
     printf("NULL\n");
 }
 
-struct Node* insert(int index, int val, struct Node* head){
+struct Node* insert( struct Node* head,int index, int val){
     if(head == NULL){
         head = (struct Node*)malloc(sizeof(struct Node*));
         head->prev = NULL;
@@ -42,7 +42,7 @@ struct Node* insert(int index, int val, struct Node* head){
         head = head->prev;
         return head;
     }
-    else if(index == len(head)-1){
+    else if(index == len(head)-1 || index == -1){
         // inserting at end
         struct Node* tmp = head;
         while(tmp->next != NULL){
@@ -70,7 +70,7 @@ struct Node* insert(int index, int val, struct Node* head){
     return head;
 }
 
-struct Node* delete(int index, struct Node* head){
+struct Node* delete( struct Node* head,int index){
     if (head == NULL){return NULL;} // empty
     int length = len(head);
 
@@ -123,16 +123,72 @@ struct Node* Create(struct Node* head,int length){
     }
     return head;
 }
-int main(){
+int demo(){
     struct Node* head = (struct Node*)malloc(sizeof(struct Node*));
     head->prev = NULL;
     int length;
     printf("The length of the dll : ");
     scanf("%d",&length);
     head = Create(head, length);
-    head = insert(2,100,head);
+    head = insert(head,2,100);
     display(head);
-    head = delete(3,head);
+    head = delete(head,3);
     display(head);
 
+}
+int main(){
+    //  creation of menu;
+    int len_ll,val;
+    printf("Creating lined list\nenter length of linked list : ");
+    scanf("%d",&len_ll);
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node*));
+    head =  Create(head ,len_ll);
+
+    int option,exit_status = 0;
+    // printf("%d\n",len(head));
+    do{
+        printf("Select the below option:\n\n");
+        printf("1.display the linked list\n");
+        printf("2.insertion\n");
+        printf("3.deletion\n");
+        printf("4.length of linked list\n");
+        printf("5.exit\n\nEnter Your option:");
+        scanf("%d",&option);
+        printf("\n--------------------------------------------------------------\n\n");
+        int index,val;
+        switch (option)
+        {
+        case 1:
+            display(head);
+            break;
+        case 2:
+            printf("(for appending enter -1)\nEnter the index of inserting : ");
+            scanf("%d",&index);
+            printf("Ënter the value for inserting : ");
+            scanf("%d",&val);
+            head = insert(head,index,val);
+            break;
+        case 3:
+            printf("(for pop enter -1)\nEnter the index of deletion : ");
+            scanf("%d",&index);
+            head = delete(head,index);
+            break;
+        case 4:
+            printf("\nlength of linked list is %d\n",len(head));
+            break;
+        case 5:
+            printf("exiting.....\n");
+            exit_status = 1;
+            break;
+        
+        default:
+            printf("enter the valid option\n");
+            break;
+        }
+        printf("\n--------------------------------------------------------------\n\n");
+    }
+    while(exit_status != 1);
+    return 0;
+    
+    
 }
