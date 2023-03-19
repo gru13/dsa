@@ -27,6 +27,11 @@ void display(struct Node* head){
 }
 
 struct Node* insert(int index, int val, struct Node* head){
+    if(head == NULL){
+        head = (struct Node*)malloc(sizeof(struct Node*));
+        head->prev = NULL;
+        head->data = val;
+    }
     if(index == 0){
         // inserting in start
         struct Node* newNode = (struct Node*)malloc(sizeof(struct Node*));
@@ -66,6 +71,9 @@ struct Node* insert(int index, int val, struct Node* head){
 }
 
 struct Node* removed(int index, struct Node* head){
+    if (head == NULL){
+        return NULL;
+    }
     if(index == 0){
         head = head->next;
         head->prev = NULL;
@@ -89,9 +97,11 @@ struct Node* removed(int index, struct Node* head){
     return head;
 }
 
-int main(){
-    struct Node* head = (struct Node*)malloc(sizeof(struct Node*));
-    head->prev = NULL;
+struct Node* Create(struct Node* head,int length){
+    if(head == NULL){
+        head = (struct Node*)malloc(sizeof(struct Node*));
+        head->prev = NULL;
+    }
     struct Node* tmp = head;
     int length;
     printf("The length of the dll : ");
@@ -108,6 +118,11 @@ int main(){
             tmp = tmp -> next;
         }
     }
+    return head;
+}
+int main(){
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node*));
+    head->prev = NULL;
     display(head);
     // head = insert(2,100,head);
     head = removed(3,head);
