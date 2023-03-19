@@ -70,21 +70,22 @@ struct Node* insert(int index, int val, struct Node* head){
     return head;
 }
 
-struct Node* removed(int index, struct Node* head){
+struct Node* delete(int index, struct Node* head){
     if (head == NULL){return NULL;} // empty
+    int length = len(head);
 
     if(index == 0){
         head = head->next;
         head->prev = NULL;
     }
-    else if(index == len(head)-1){
+    else if(index == length-1 || index == -1){
         struct Node*  tmp = head;
         while(tmp->next->next != NULL){
             tmp = tmp->next;
         }
         tmp->next =  NULL;
     }
-    else{
+    else if(index<length && index>0){
         struct Node* tmp = head;
         index--;
         while(index--){
@@ -93,18 +94,21 @@ struct Node* removed(int index, struct Node* head){
         tmp->next->next->prev = tmp;
         tmp->next = tmp->next->next;
     }
+    else{
+         printf("Can't be removed");
+    }
     return head;
 }
 
 struct Node* Create(struct Node* head,int length){
+    //  if statement don't work
     if(head == NULL){
         head = (struct Node*)malloc(sizeof(struct Node*));
         head->prev = NULL;
     }
+
     struct Node* tmp = head;
-    int length;
-    printf("The length of the dll : ");
-    scanf("%d",&length);
+
     for(int i = 0;i<length;i++){
         printf("Enter the value of the index %d : ",i);
         scanf("%d", &tmp->data);
@@ -122,9 +126,13 @@ struct Node* Create(struct Node* head,int length){
 int main(){
     struct Node* head = (struct Node*)malloc(sizeof(struct Node*));
     head->prev = NULL;
+    int length;
+    printf("The length of the dll : ");
+    scanf("%d",&length);
+    head = Create(head, length);
+    head = insert(2,100,head);
     display(head);
-    // head = insert(2,100,head);
-    head = removed(3,head);
+    head = delete(3,head);
     display(head);
 
 }

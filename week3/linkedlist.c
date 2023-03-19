@@ -33,6 +33,7 @@ struct Node* insert (struct Node* head, int index, int val){
     struct Node* newNode  = (struct Node*) malloc(sizeof(struct Node*));
     newNode->data = val;
     int length = len(head);
+
     if(index == 0){
         newNode->next = head;
         head = newNode; 
@@ -92,6 +93,27 @@ struct Node* delete (struct Node* head, int index){
 
 }
 
+struct Node* Create(struct Node* head, int length){
+    struct Node* tmp = head;
+    // if statement don't work
+    if(tmp == NULL){
+        head = (struct Node*)malloc(sizeof(struct Node*));
+    }
+
+    for(int i = 0;i<length;i++){
+        printf("enter value of index %d : ",i);
+        scanf("%d",&tmp->data);
+        if(i == length - 1){
+            tmp->next = NULL;   
+        }
+        else{
+            tmp->next = (struct Node*)malloc(sizeof(struct Node*));
+            tmp = tmp->next;
+        }
+    }
+
+    return head;
+}
 
 int demo(){
     struct Node* first = (struct Node*)malloc(sizeof(struct Node*));
@@ -124,18 +146,8 @@ int main(){
     printf("Creating lined list\nenter length of linked list : ");
     scanf("%d",&len_ll);
     struct Node* head = (struct Node*)malloc(sizeof(struct Node*));
-    struct Node* tmp = head;
+    head =  Create(head ,len_ll);
 
-    for(int i = 0;i<len_ll;i++){
-        printf("enter value of index %d : ",i);
-        scanf("%d",&val);
-        tmp->data = val;
-        if(i != len_ll-1){
-        tmp->next = (struct Node*)malloc(sizeof(struct Node*));
-        tmp = tmp->next;
-        }
-    }
-    tmp->next = NULL;
     int option,exit_status = 0;
     // printf("%d\n",len(head));
     do{
