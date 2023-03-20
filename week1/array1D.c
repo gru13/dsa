@@ -90,7 +90,7 @@ int demo(){
 int main(){
 //  creation of menu;
     int len,val;
-    printf("Creating lined list\nenter length of linked list : ");
+    printf("Creating larray\nenter length of array : ");
     scanf("%d",&len);
     
     int *arr = (int*)malloc(sizeof(int*)*len);
@@ -102,7 +102,7 @@ int main(){
         printf("1.display the array\n");
         printf("2.insertion\n");
         printf("3.deletion\n");
-        printf("4.length of linked list\n");
+        printf("4.length of array\n");
         printf("5.sort array\n");
         printf("6.exit\n\nEnter Your option:");
         scanf("%d",&option);
@@ -122,7 +122,7 @@ int main(){
             len++;
             break;
         case 3:
-            printf("(for pop enter -1)\nEnter the index of deletion : ");
+            printf("\nEnter the index of deletion : ");
             scanf("%d",&index);
             arr = delete(arr,len,index);
             len--;
@@ -141,7 +141,6 @@ int main(){
         
         default:
             printf("enter the valid option\n");
-            break;
         }
         printf("\n--------------------------------------------------------------\n\n");
     }
