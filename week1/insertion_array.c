@@ -19,7 +19,7 @@ int* insert(int *arr, int len, int index,int val){
             arr1[index] = val;
         }
     }
-    free(arr);
+    
     return arr1;
 
 }
