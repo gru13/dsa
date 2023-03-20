@@ -70,7 +70,7 @@ int* sort(int* arr, int len){
 
 
 
-int main(){
+int demo(){
     int len;
     printf("Enter the length of array : ");
     scanf("%d", &len);
@@ -85,7 +85,67 @@ int main(){
     // display(arr,len);
     arr  = sort(arr,len);
     display(arr,len);
+}
 
-
+int main(){
+//  creation of menu;
+    int len,val;
+    printf("Creating lined list\nenter length of linked list : ");
+    scanf("%d",&len);
+    
+    int *arr = (int*)malloc(sizeof(int*)*len);
+    Create(arr,len);
+    int option,exit_status = 0;
+    // printf("%d\n",len(head));
+    do{
+        printf("Select the below option:\n\n");
+        printf("1.display the array\n");
+        printf("2.insertion\n");
+        printf("3.deletion\n");
+        printf("4.length of linked list\n");
+        printf("5.sort array\n");
+        printf("6.exit\n\nEnter Your option:");
+        scanf("%d",&option);
+        printf("\n--------------------------------------------------------------\n\n");
+        int index,val;
+        switch (option)
+        {
+        case 1:
+            display(arr,len);
+            break;
+        case 2:
+            printf("Enter the index of inserting : ");
+            scanf("%d",&index);
+            printf("Enter the value for inserting : ");
+            scanf("%d",&val);
+            arr = insert(arr,len,index,val);
+            len++;
+            break;
+        case 3:
+            printf("(for pop enter -1)\nEnter the index of deletion : ");
+            scanf("%d",&index);
+            arr = delete(arr,len,index);
+            len--;
+            break;
+        case 4:
+            printf("\nlength of linked list is %d\n",len);
+            break;
+        case 5:
+            printf("\nthe array is sorted\n");
+            arr = sort(arr,len);
+            break;
+        case 6:
+            printf("exiting.....\n");
+            exit_status = 1;
+            break;
+        
+        default:
+            printf("enter the valid option\n");
+            break;
+        }
+        printf("\n--------------------------------------------------------------\n\n");
+    }
+    while(exit_status != 1);
+    return 0;  
 
 }
