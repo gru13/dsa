@@ -57,6 +57,7 @@ int* delete(int *arr,int len,int index){
     return arr;
 }
 int* sort(int* arr, int len){
+    
     for(int i = 0; i<len; i++){
 	   for(int j = 0; j<len-i; j++){
 		 if(*(arr+j)>*(arr+j+1)){
