@@ -104,7 +104,8 @@ int main(){
         printf("3.deletion\n");
         printf("4.length of array\n");
         printf("5.sort array\n");
-        printf("6.exit\n\nEnter Your option:");
+        printf("6.update\n");
+        printf("7.exit\n\nEnter Your option:");
         scanf("%d",&option);
         printf("\n--------------------------------------------------------------\n\n");
         int index,val;
@@ -135,12 +136,19 @@ int main(){
             arr = sort(arr,len);
             break;
         case 6:
+            printf("Enter the index of updating : ");
+            scanf("%d",&index);
+            printf("Enter the value for updating : ");
+            scanf("%d",&val);
+            arr[index] = val;
+            break;
+        case 7:
             printf("exiting.....\n");
             exit_status = 1;
             break;
-        
         default:
             printf("enter the valid option\n");
+            break;
         }
         printf("\n--------------------------------------------------------------\n\n");
     }
