@@ -94,11 +94,10 @@ struct Node* delete (struct Node* head, int index){
 }
 
 struct Node* Create(struct Node* head, int length){
-    struct Node* tmp = head;
-    // if statement don't work
-    if(tmp == NULL){
-        head = (struct Node*)malloc(sizeof(struct Node*));
+    if(head == NULL){
+        head  = (struct Node*)malloc(sizeof(struct Node*));
     }
+    struct Node* tmp = head;
 
     for(int i = 0;i<length;i++){
         printf("enter value of index %d : ",i);
@@ -145,7 +144,7 @@ int main(){
     int len_ll,val;
     printf("Creating lined list\nenter length of linked list : ");
     scanf("%d",&len_ll);
-    struct Node* head = (struct Node*)malloc(sizeof(struct Node*));
+    struct Node* head = NULL;
     head =  Create(head ,len_ll);
 
     int option,exit_status = 0;
@@ -192,7 +191,5 @@ int main(){
         printf("\n--------------------------------------------------------------\n\n");
     }
     while(exit_status != 1);
-    return 0;
-    
-    
+    return 0;  
 }

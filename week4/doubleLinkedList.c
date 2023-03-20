@@ -101,7 +101,7 @@ struct Node* delete( struct Node* head,int index){
 }
 
 struct Node* Create(struct Node* head,int length){
-    //  if statement don't work
+
     if(head == NULL){
         head = (struct Node*)malloc(sizeof(struct Node*));
         head->prev = NULL;
@@ -141,7 +141,7 @@ int main(){
     int len_ll,val;
     printf("Creating lined list\nenter length of linked list : ");
     scanf("%d",&len_ll);
-    struct Node* head = (struct Node*)malloc(sizeof(struct Node*));
+    struct Node* head = NULL;
     head =  Create(head ,len_ll);
 
     int option,exit_status = 0;
