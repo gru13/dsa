@@ -70,12 +70,18 @@ struct Node* delete (struct Node* head, int index){
         head = head->next;
     }
     else if(index == length-1 || index == -1) {
+        if(length == 1){
+            free(head);
+            return NULL;
+        }
         struct Node* tmp = head;
         while (tmp->next->next != NULL)
         {
             tmp=tmp->next;
         }
+        struct Node* tmtp = tmp->next;
         tmp->next=NULL; 
+        free(tmtp);
     }
     else if (index<length && index>0)
     {
