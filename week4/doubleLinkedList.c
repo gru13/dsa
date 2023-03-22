@@ -139,7 +139,7 @@ int demo(){
 int main(){
     //  creation of menu;
     int len_ll,val;
-    printf("Creating lined list\nenter length of linked list : ");
+    printf("Creating lined list\nenter length of Double LinkedList : ");
     scanf("%d",&len_ll);
     struct Node* head = NULL;
     head =  Create(head ,len_ll);
@@ -148,10 +148,10 @@ int main(){
     // printf("%d\n",len(head));
     do{
         printf("Select the below option:\n\n");
-        printf("1.display the linked list\n");
+        printf("1.display the Double LinkedList\n");
         printf("2.insertion\n");
         printf("3.deletion\n");
-        printf("4.length of linked list\n");
+        printf("4.length of Double LinkedList\n");
         printf("5.exit\n\nEnter Your option:");
         scanf("%d",&option);
         printf("\n--------------------------------------------------------------\n\n");
@@ -174,7 +174,7 @@ int main(){
             head = delete(head,index);
             break;
         case 4:
-            printf("\nlength of linked list is %d\n",len(head));
+            printf("\nLength of Double LinkedList is %d\n",len(head));
             break;
         case 5:
             printf("exiting.....\n");
