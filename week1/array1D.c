@@ -90,7 +90,7 @@ int demo(){
 int main(){
 //  creation of menu;
     int len,val;
-    printf("Creating larray\nenter length of array : ");
+    printf("Creating array\nenter length of array : ");
     scanf("%d",&len);
     
     int *arr = (int*)malloc(sizeof(int*)*len);
@@ -98,7 +98,7 @@ int main(){
     int option,exit_status = 0;
     // printf("%d\n",len(head));
     do{
-        printf("Select the below option:\n\n");
+        printf("\nSelect the below option:\n\n");
         printf("1.display the array\n");
         printf("2.insertion\n");
         printf("3.deletion\n");
