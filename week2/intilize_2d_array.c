@@ -14,6 +14,7 @@ int **create(int i, int j) {
     }
     return arr;
 }
+
 int **create_empty(int i, int j) {
     int **arr = malloc(i * sizeof(int *));
     for (int a = 0; a < i; a++) {
@@ -21,7 +22,6 @@ int **create_empty(int i, int j) {
     }
     return arr;
 }
-
 
 void display(int** arr){
     printf("\n");
@@ -90,7 +90,6 @@ int sum(int ** arr){
     return sum;
 }
 
-
 int** sort_row(int** arr){
     for(int i = 0;i<ROW;i++){
         for(int j = 0 ;j<ROW-i-1;j++){
@@ -103,8 +102,6 @@ int** sort_row(int** arr){
     }
     return arr;
 }
-
-
 
 
 int main(){
