@@ -122,19 +122,19 @@ int demo(){
 int main(){
     //  creation of menu;
     int len_ll,val;
-    printf("Creating lined list\nenter length of linked list : ");
+    printf("Creating circular linked list\nenter length of circular linked list : ");
     scanf("%d",&len_ll);
-    struct Node* head = NULL;
-    head =  Create(head ,len_ll);
+    struct Node* Last = malloc(sizeof(struct Node*));
+    Last =  Create(Last ,len_ll);
 
     int option,exit_status = 0;
-    // printf("%d\n",len(head));
+    // printf("%d\n",len(Last));
     do{
         printf("Select the below option:\n\n");
-        printf("1.display the linked list\n");
+        printf("1.display the circular linked list\n");
         printf("2.insertion\n");
         printf("3.deletion\n");
-        printf("4.length of linked list\n");
+        printf("4.length of circular linked list\n");
         printf("5.exit\n\nEnter Your option:");
         scanf("%d",&option);
         printf("\n--------------------------------------------------------------\n\n");
@@ -142,22 +142,22 @@ int main(){
         switch (option)
         {
         case 1:
-            display(head);
+            display(Last);
             break;
         case 2:
             printf("(for appending enter -1)\nEnter the index of inserting : ");
             scanf("%d",&index);
             printf("Ënter the value for inserting : ");
             scanf("%d",&val);
-            head = insert(head,index,val);
+            Last = insert(Last,index,val);
             break;
         case 3:
             printf("(for pop enter -1)\nEnter the index of deletion : ");
             scanf("%d",&index);
-            head = delete(head,index);
+            Last = delete(Last,index);
             break;
         case 4:
-            printf("\nlength of linked list is %d\n",len(head));
+            printf("\nlength of linked list is %d\n",len(Last));
             break;
         case 5:
             printf("exiting.....\n");
