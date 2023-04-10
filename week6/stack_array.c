@@ -33,12 +33,13 @@ int* pop(int* stack){
         printf("\nNO ELEMENT TO POP\n");
     }
     else{
-        top--;
         int* nw  = (int*)malloc(sizeof(int*)*(top-1));
         for(int i = 0;i<=top-1;i++){
             nw[i] = stack[i+1];
+            // printf("\n%d\n",stack[i+1]);
         }
         stack = nw;
+        top--;
         nw = NULL;
     }
     return stack;
@@ -60,6 +61,10 @@ int main(){
     stack = push(stack,3);
     stack = push(stack,2);
     stack = push(stack,1);
+    display(stack);
+    stack = pop(stack);
+    display(stack);
+    stack = pop(stack);
     display(stack);
     stack = pop(stack);
     display(stack);
