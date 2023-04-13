@@ -27,6 +27,28 @@ int* push(int* stack,int val){
     }
     return stack;
 }
+int* push_(int* stack,int val,int top){
+    if(top == -1){
+        top++;
+        stack = (int*)malloc(sizeof(int)*(1+top));
+        stack[0] = val;
+    }
+    else{
+        top++;
+        int* nw = (int*)malloc(sizeof(int)*(1+top));
+        for(int i = 0;i<=top;i++){
+            if(i == 0){
+                nw[0]=val;
+            }
+            else{
+                nw[i] = stack[i-1];
+            }
+        }
+        stack = nw;
+        nw = NULL;
+    }
+    return stack;
+}
 
 int* pop(int* stack){
     if(top == -1){
@@ -44,7 +66,7 @@ int* pop(int* stack){
     }
     return stack;
 }
-int* pop(int* stack, int top){
+int* pop_(int* stack, int top){
     if(top == -1){
         printf("\nNO ELEMENT TO POP\n");
     }
@@ -65,6 +87,9 @@ int* pop(int* stack, int top){
 
 void display(int* stack){
     int d = 0;
+    if(top == -1){
+        printf("NONE\n");
+    }
     printf("\n");
     for(int i = top;i>=0;i--){
         printf("%d\t", stack[d]);
@@ -78,21 +103,18 @@ int top_val(int* stack){
 }
 
 int* reverse(int* stack){
-    int* rev =  (int*)malloc(sizeof(int)*(1+h));
-    int TOP = top;
-    top = 0;
+    int* rev;
+    int va,h = -1;
+    // display(stack);
     while(top != -1){
-        int j = top_val(stack);
-        display(stack);
-        printf("%d\n",top);
-        rev = push(rev,j);
-        stack = pop(stack);
-        top--;
+        va = top_val(stack);
+        rev = push_(rev, va, h); 
         h++;
+        stack = pop(stack);
+        
     }
-    display(rev);
-    top = TOP;
-    stack = rev; 
+    stack = rev;
+    top = h;
     return stack;
 }
 
@@ -114,7 +136,12 @@ int main(){
     // stack = pop(stack);
     // display(stack);
     // printf("%d", top_val(stack));
-    stack = reverse(stack);
-    display(stack);
-    return 0;
+    // display(stack);
+    // stack = reverse(stack);
+    // display(stack);
+    // stack = push(stack, 7); 
+    // stack = push(stack, 6); 
+    // stack = push(stack, 9);
+    // display(stack); 
+    // return 0;
 }
