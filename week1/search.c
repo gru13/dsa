@@ -11,5 +11,11 @@ int search(int val, int arr[] ,int len){
 int main(){
     int arr[] ={1,2,3,4,5,6,9};
     int index = search(2, arr,7);
-    printf("%d",index);
+    if(index>=0){
+        printf("Elemnet fount in index :  %d\n", index);
+    }
+    else{
+        printf("Element not found\n")
+    }
+    // printf("%d",index);
 }
