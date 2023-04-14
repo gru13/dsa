@@ -16,7 +16,7 @@ void swap(int *a, int *b){
 }
 
 void display(int arr[],int len){
-    printf("\n");
+    printf("-------------------------------------------------------------\n");
     for(int i = 0; i<len;i++){
         printf("%d\t",arr[i]);
     }
