@@ -120,6 +120,25 @@ struct Node* Create(struct Node* head, int length){
     return head;
 }
 
+
+struct Node* sort(struct Node* head){
+    int ln = len(head);
+    struct Node* tmp = head;
+    for(int i = 0; i < ln - 1; i++){
+        tmp = head;
+        for(int j = 0; j < ln - i - 1; j++){
+            if(tmp->data > tmp->next->data ){
+                int v = tmp->data ;
+                tmp->data  = tmp->next->data ;
+                tmp->next->data  = v;
+            }
+            tmp = tmp->next;
+        }
+    }
+    return head;
+}
+
+
 int demo(){
     struct Node* first = (struct Node*)malloc(sizeof(struct Node*));
     struct Node* second = (struct Node*)malloc(sizeof(struct Node*));
@@ -127,8 +146,8 @@ int demo(){
     struct Node* four = (struct Node*)malloc(sizeof(struct Node*));
 
     first->data = 1;
-    second->data = 2;
-    third->data = 3;
+    second->data = 42;
+    third->data = 22;
     four->data = 4;
 
     first->next = second;
@@ -139,7 +158,7 @@ int demo(){
     struct Node* head = first;
 
     display(head);
-    head = delete(head,2);
+    head = sort(head);
     display(head);
     printf("%d\n",len(head));
     return 0;
