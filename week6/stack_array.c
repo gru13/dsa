@@ -136,9 +136,9 @@ int main(){
     // stack = pop(stack);
     // display(stack);
     // printf("%d", top_val(stack));
-    // display(stack);
-    // stack = reverse(stack);
-    // display(stack);
+    display(stack);
+    stack = reverse(stack);
+    display(stack);
     // stack = push(stack, 7); 
     // stack = push(stack, 6); 
     // stack = push(stack, 9);
