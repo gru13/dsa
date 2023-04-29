@@ -177,7 +177,7 @@ struct Node* delete(struct Node* Last,int index){
 }
 
 
-int main(){
+int demo(){
     struct Node* Last = (struct Node*)malloc(sizeof(struct Node*));
     Last = Create_(Last, 2);
     // display(Last);
@@ -196,7 +196,7 @@ int main(){
     return 0;
 }
 
-int main_(){
+int main(){
     //  creation of menu;
     int len_ll,val;
     printf("Creating circular linked list\nenter length of circular linked list : ");
