@@ -26,9 +26,7 @@ struct Node* push(struct Node* stack, int val){
     return stack;
 }
 void display(struct Node* stack){
-    printf("\n----------------------------------------------------------\n");
-    printf("--------------------------stack---------------------------\n");
-    printf("----------------------------------------------------------\n\n");
+    printf("--------------------------stack---------------------------\n\n");
     if(stack == NULL){
         printf("No Element in stack\n");
     }
@@ -38,7 +36,6 @@ void display(struct Node* stack){
         tmp = tmp->next;
     }
     printf("\n----------------------------------------------------------\n");
-    printf("----------------------------------------------------------\n\n");
 }
 
 
@@ -72,7 +69,7 @@ struct Node* reverse(struct Node* stack){
     return stack;
 }
 
-int main(){
+int demo(){
     stack = push(stack,1);
     stack = push(stack,2);
     stack = push(stack,3);
@@ -92,4 +89,48 @@ int main(){
 
     display(stack);
     return 0;
+}
+int main(){
+    //  creation of menu;
+    int val;
+    printf("Creating stack: ");
+
+    int option,exit_status = 0;
+    // printf("%d\n",len(stack));
+    do{
+        printf("Select the below option:\n\n");
+        printf("1.display the stack\n");
+        printf("2.push\n");
+        printf("3.pop\n");
+        printf("4.exit\n\nEnter Your option:");
+        scanf("%d",&option);
+        printf("\n--------------------------------------------------------------\n\n");
+        int index,val;
+        switch (option)
+        {
+        case 1:
+            display(stack);
+            break;
+        case 2:
+            printf("Enter the value for push : ");
+            scanf("%d",&val);
+            stack = push(stack,val);
+            break;
+        case 3:
+            printf("PUSH");
+            stack = pop(stack);
+            break;
+        case 4:
+            printf("exiting.....\n");
+            exit_status = 1;
+            break;
+        
+        default:
+            printf("enter the valid option\n");
+            break;
+        }
+        printf("\n--------------------------------------------------------------\n\n");
+    }
+    while(exit_status != 1);
+    return 0;  
 }

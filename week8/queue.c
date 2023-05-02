@@ -75,7 +75,7 @@ struct Queue* reverse(struct Queue* Q){
     Q->queue = rev;
     return Q;
 }
-int main(){
+int demo(){
     struct Queue* Q = create();
     Q = enQueue(Q,1);
     Q = enQueue(Q,2);
@@ -86,4 +86,55 @@ int main(){
     display(Q);
     Q = reverse(Q);
     display(Q);
+}
+
+int main(){
+    //  creation of menu;
+    int len_ll,val;
+    printf("Creating Queue: ");
+    struct Queue* Q = create();
+
+    int option,exit_status = 0;
+    // printf("%d\n",len(Q));
+    do{
+        printf("Select the below option:\n\n");
+        printf("1.display the Queue\n");
+        printf("2.enQueue\n");
+        printf("3.deQueue\n");
+        printf("4.Reverse\n");
+        printf("5.exit\n\nEnter Your option:");
+        scanf("%d",&option);
+        printf("\n--------------------------------------------------------------\n\n");
+        int index,val;
+        switch (option)
+        {
+        case 1:
+            display(Q);
+            break;
+        case 2:
+            printf("Enter the value for enQueue : ");
+            scanf("%d",&val);
+            Q = enQueue(Q,val);
+            break;
+        case 3:
+            printf("deQueue\n");
+            Q = deQueue(Q);
+            break;
+        case 4:
+            printf("REVERSED\n");
+            Q = reverse(Q);
+            break;
+        case 5:
+            printf("exiting.....\n");
+            exit_status = 1;
+            break;
+        
+        default:
+            printf("enter the valid option\n");
+            break;
+        }
+        printf("\n--------------------------------------------------------------\n\n");
+    }
+    while(exit_status != 1);
+    return 0;  
 }

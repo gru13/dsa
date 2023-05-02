@@ -203,10 +203,10 @@ int main(){
     // S = push(S,'4');
     display(S);
     
-    // int val = postfix_eval(S);
-    // printf("%d",val);
-    // printf("%c\n",top(S));
-    // S = pop(S);
-    // S = reverse(S);
-    // display(S);
+    int val = postfix_eval(S);
+    printf("%d",val);
+    printf("%c\n",top(S));
+    S = pop(S);
+    S = reverse(S);
+    display(S);
 }
