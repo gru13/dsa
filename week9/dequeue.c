@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-
+#include<limits.h>
 struct DQ
 {
     int front;
@@ -26,6 +26,10 @@ struct DQ* create(int max){
     D->last = -1;
     D->n_ele = 0;
     D->q = (int*)malloc(sizeof(int*)*max);
+    // D->q[max];
+    for(int i=0;i<max;i++){
+        D->q[i] = INT_MAX;
+    }
     // printf("\n%d---%d--%d\n",D->MAX,D->front,D->last);
     D->MAX = max;
     return D;
@@ -34,7 +38,7 @@ struct DQ* create(int max){
 void display(struct DQ* D){
     printf("\n");
     for(int i = 0;i<D->MAX;i++){
-        if(inRange(D->front, D->last, i) == 1 || D->MAX == D->n_ele){
+        if(D->q[i] != INT_MAX){
         // if(1){
             printf(" %d ->",D->q[i]);
             // cur--;
@@ -82,7 +86,7 @@ struct DQ* add_start(struct DQ* D,int val){
 struct DQ* remove_start(struct DQ* D){
     if(D->n_ele>0){
         
-        D->q[D->front] = 0;
+        D->q[D->front] = INT_MAX;
         int index = D->front + 1;
         index = index % D->MAX;
         D->front = index;
@@ -97,7 +101,7 @@ struct DQ* remove_start(struct DQ* D){
 
 struct DQ* remove_end(struct DQ* D){
     if(D->n_ele>0){
-        D->q[D->last] = 0;
+        D->q[D->last] = INT_MAX;
         int index = D->last - 1;
         if(index < 0){
             index = index + D->MAX;
@@ -120,11 +124,14 @@ struct DQ* remove_end(struct DQ* D){
 int main(void){
     struct DQ* D = create(5);
     D = add_start(D,4);
+    printf("\n--%d--\n");
     D = add_end(D,1);
     D = add_end(D,2);
     D = add_end(D,3);
     D = remove_start(D);
     D = add_end(D,4);
-    D = add_end(D,5);
+    D = remove_start(D);
+    D = remove_start(D);
+    D = remove_start(D);    D = add_end(D,5);
     display(D);
 }
