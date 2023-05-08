@@ -34,12 +34,12 @@ struct DQ* create(int max){
 void display(struct DQ* D){
     printf("\n");
     for(int i = 0;i<D->MAX;i++){
-        if(inRange(D->front, D->last, i) == 1){
+        if(inRange(D->front, D->last, i) == 1 || D->MAX == D->n_ele){
         // if(1){
-            printf("%d->",D->q[i]);
+            printf(" %d ->",D->q[i]);
             // cur--;
         } else {
-            printf("NULL ->");
+            printf(" NULL ->");
         }
     }
     printf("\n");
@@ -120,5 +120,11 @@ struct DQ* remove_end(struct DQ* D){
 int main(void){
     struct DQ* D = create(5);
     D = add_start(D,4);
+    D = add_end(D,1);
+    D = add_end(D,2);
+    D = add_end(D,3);
+    D = remove_start(D);
+    D = add_end(D,4);
+    D = add_end(D,5);
     display(D);
 }

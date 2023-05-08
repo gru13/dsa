@@ -116,45 +116,46 @@ struct CDL* insert(struct CDL* cdl, int index, int val){
     if(index<0){
         index += cdl->len;
     }
-    if(index < 0 || index >= cdl->len){
+    if(index < 0 || index > cdl->len){
         return cdl;
     }
     struct Node* n = node(val);
-    if(index == 0 || index == cdl->len-1){
+    if(index == 0 ){
         n->next = cdl->Last->next;
         n->prev = cdl->Last;
         cdl->Last->next->prev = n;
         cdl->Last->next = n;
         cdl->len++;
-        if(index != 0){
-            int t = cdl->Last->data;
-            cdl->Last->data = cdl->Last->next->data;
-            cdl->Last->next->data = t;
-            cdl->Last = cdl->Last->next;
-        }
         return cdl;
     } else {
         struct Node* tmp = cdl->Last->next;
         for(int i = 0;i<index-1;i++){tmp = tmp->next;}
         n->next = tmp->next;
-        n->prev = tmp->prev;
+        n->prev = tmp;
         tmp->next->prev = n;
         tmp->next = n;
+        if(index == cdl->len-1){
+            cdl->Last = cdl->Last->next;
+        }
         cdl->len++;
         return cdl;
     }
 }
 
 struct CDL* delete(struct CDL* cdl,int index){
-    if(index < 0){
-        index += cdl->len;
-    }
-    if(index<0||index>cdl->len){return cdl;}
-
-    if(index == 0){
+ if (index == 0) {
         cdl->Last->next = cdl->Last->next->next;
         cdl->Last->next->prev = cdl->Last; 
+        cdl->len--;
+        return cdl;
     }
+    struct Node* tmp = cdl->Last->next;
+    for (int i = 0; i < index; i++) {
+        tmp = tmp->next;
+    }
+    tmp->prev->next = tmp->next;
+    tmp->next->prev = tmp->prev;
+    cdl->len--;
     return cdl;
 }
 
