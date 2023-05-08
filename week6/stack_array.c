@@ -173,7 +173,7 @@ int main(){
             stack = push(stack,val);
             break;
         case 3:
-            printf("PUSH");
+            printf("POP");
             stack = pop(stack);
             break;
         case 4:
