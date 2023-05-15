@@ -16,8 +16,7 @@ struct Node* create_node(int val){
     n->ryt = NULL;
     return n;
 } 
-void inorder(struct Node* node)
-{
+void inorder(struct Node* node){
     if (node == NULL)
         return;
  
@@ -30,8 +29,7 @@ void inorder(struct Node* node)
     /* now recur on right child */
     inorder(node->ryt);
 }
-void preorder(struct Node* node)
-{
+void preorder(struct Node* node){
     if (node == NULL)
         return;
 
@@ -45,8 +43,7 @@ void preorder(struct Node* node)
     preorder(node->ryt);
 }
 
-void postorder(struct Node* node)
-{
+void postorder(struct Node* node){
     if (node == NULL)
         return;
     /* first recur on left child */
@@ -59,6 +56,7 @@ void postorder(struct Node* node)
     printf("%d ", node->data);
  
 }
+
 int main(){
     struct Node* Root = create_node(1);
     struct Node* l1 = create_node(2);
