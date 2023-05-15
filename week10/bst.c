@@ -17,15 +17,36 @@ NODE create_node(int val){
     n->ryt = NULL;
     return n;
 } 
+
+void insert(NODE tree, int val){
+    if(val == tree->data){
+        return;
+    }
+    if(val < tree->data){
+        if(tree->lft == NULL){
+            tree->lft = create_node(val);
+            return;
+        }else{
+            return insert(tree->lft,val);
+        }
+    }
+    if(val > tree->data){
+        if(tree->ryt == NULL){
+            tree->ryt = create_node(val);
+            return;
+        }else{
+            return insert(tree->ryt,val);
+        }
+    }
+}
 NODE create_tree(int* arr, int len){
     if(len <= 0 ){
         return NULL;
     }
     int val;
-    NODE Root = create_node(arr*);
+    NODE Root = create_node(arr[0]);
     for(int i = 1;i<len;i++){
-        val = arr[i];
-        insert(Root,val);
+        insert(Root, arr[i]);
     }
     return Root;
 }
@@ -71,28 +92,6 @@ void postorder(NODE node){
  
 }
 
-void insert(NODE tree, int val){
-    if(val == tree->data){
-        return;
-    }
-    if(val < tree->data){
-        if(tree->lft == NULL){
-            tree->lft = create_node(val);
-            return;
-        }else{
-            return insert(tree->lft,val);
-        }
-    }
-    if(val > tree->data){
-        if(tree->ryt == NULL){
-            tree->ryt = create_node(val);
-            return;
-        }else{
-            return insert(tree->ryt,val);
-        }
-    }
-}
-
 int main(){
     // NODE Root = create_node(8);
     // NODE l1 = create_node(3);
@@ -113,17 +112,9 @@ int main(){
     // printf("\n");
     // postorder(Root);
     // printf("\n");
-    int* arr = malloc(sizeof(int)*8);
-    // arr = 8,3,10,2,4,5,9,11;
-    arr[0] = 8;
-    arr[1] = 3;
-    arr[2] = 10;
-    arr[3] = 2;
-    arr[4] = 4;
-    arr[5] = 5;
-    arr[6] = 9;
-    arr[7] = 11;
-    NODE Root = create_tree(arr,8);
+    int arr[] ={8,1,2,9,10,11,22,5,19,55};
+    int len = sizeof(arr)/sizeof(arr[0]);
+    NODE Root = create_tree(arr,len);
     insert(Root ,55);
     insert(Root ,1);
     inorder(Root);
