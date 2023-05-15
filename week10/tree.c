@@ -2,23 +2,26 @@
 #include<stdlib.h>
 #include<limits.h>
 
+typedef struct Node* NODE;
+
 struct Node{
-    struct Node* lft;
-    struct Node* ryt;
+    NODE lft;
+    NODE ryt;
     int data;
 };
 
-struct Node* create_node(int val){
-    struct Node* n = (struct Node*)malloc(sizeof(struct Node));
+NODE create_node(int val){
+    NODE n = (NODE)malloc(sizeof(NODE));
     n->data = val;
     n->lft = NULL;
     n->ryt = NULL;
     return n;
 } 
-void inorder(struct Node* node){
+
+void inorder(NODE node){
     if (node == NULL)
         return;
- 
+    
     /* first recur on left child */
     inorder(node->lft);
  
@@ -28,7 +31,7 @@ void inorder(struct Node* node){
     /* now recur on right child */
     inorder(node->ryt);
 }
-void preorder(struct Node* node){
+void preorder(NODE node){
     if (node == NULL)
         return;
 
@@ -42,7 +45,7 @@ void preorder(struct Node* node){
     preorder(node->ryt);
 }
 
-void postorder(struct Node* node){
+void postorder(NODE node){
     if (node == NULL)
         return;
     /* first recur on left child */
@@ -56,7 +59,10 @@ void postorder(struct Node* node){
  
 }
 
-void insert(struct Node* tree, int val){
+void insert(NODE tree, int val){
+    if(val == tree->data){
+        return;
+    }
     if(val < tree->data){
         if(tree->lft == NULL){
             tree->lft = create_node(val);
@@ -76,13 +82,13 @@ void insert(struct Node* tree, int val){
 }
 
 int main(){
-    struct Node* Root = create_node(8);
-    struct Node* l1 = create_node(3);
-    struct Node* l2 = create_node(10);
-    struct Node* l1l = create_node(2);
-    struct Node* l1r = create_node(4);
-    struct Node* l2l = create_node(9);
-    struct Node* l2r = create_node(11);
+    NODE Root = create_node(8);
+    NODE l1 = create_node(3);
+    NODE l2 = create_node(10);
+    NODE l1l = create_node(2);
+    NODE l1r = create_node(4);
+    NODE l2l = create_node(9);
+    NODE l2r = create_node(11);
     Root->lft = l1;
     l1->lft = l1l;
     l1->ryt = l1r;
@@ -95,7 +101,8 @@ int main(){
     // printf("\n");
     // postorder(Root);
     // printf("\n");
-    insert(Root,55);
+    insert(Root ,55);
+    insert(Root ,1);
     inorder(Root);
     printf("\n");
 
