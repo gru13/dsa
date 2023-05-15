@@ -57,6 +57,10 @@ void postorder(struct Node* node){
  
 }
 
+void insert(struct Node* tree, int val){
+    if(val<tree->data)
+}
+
 int main(){
     struct Node* Root = create_node(1);
     struct Node* l1 = create_node(2);
