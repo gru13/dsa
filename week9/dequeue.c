@@ -124,14 +124,15 @@ struct DQ* remove_end(struct DQ* D){
 int main(void){
     struct DQ* D = create(5);
     D = add_start(D,4);
-    printf("\n--%d--\n");
-    D = add_end(D,1);
-    D = add_end(D,2);
-    D = add_end(D,3);
-    D = remove_start(D);
-    D = add_end(D,4);
-    D = remove_start(D);
-    D = remove_start(D);
-    D = remove_start(D);    D = add_end(D,5);
+    printf("\n--%d--\n");₹
+    // D = add_end(D,1);
+    // D = add_end(D,2);
+    // D = add_end(D,3);
+    // D = remove_start(D);
+    // D = add_end(D,4);
+    // D = remove_start(D);
+    // D = remove_start(D);
+    // D = remove_start(D);
+    // D = add_end(D,5);
     display(D);
 }
