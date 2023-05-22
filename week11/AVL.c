@@ -11,4 +11,15 @@ struct Node{
     NODE ryt;
 };
 
-NODE create()
+NODE create_Node(int data){
+    NODE newNode = (NODE)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->lft = NULL;
+    newNode->ryt = NULL;
+    newNode->height = 1;
+    return newNode;
+}
+
+NODE create_Tree(int* arr, int len){
+    
+}
