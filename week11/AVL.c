@@ -2,17 +2,17 @@
 #include<stdlib.h>
 #include<limits.h>
 
-typedef struct Node* NODE;
+typedef struct Node Node;
 
 struct Node{
     int data;
     int height;
-    NODE lft;
-    NODE ryt;
+    Node* lft;
+    Node* ryt;
 };
 
-NODE create_Node(int data){
-    NODE newNode = (NODE)malloc(sizeof(struct Node));
+Node* create_Node(int data){
+    Node* newNode = (Node*)malloc(sizeof(struct Node));
     newNode->data = data;
     newNode->lft = NULL;
     newNode->ryt = NULL;
@@ -20,6 +20,7 @@ NODE create_Node(int data){
     return newNode;
 }
 
-NODE create_Tree(int* arr, int len){
-    
+Node create_Tree(int* arr){
+    int len = sizeof(arr)/sizeof(arr[0]);
+
 }
