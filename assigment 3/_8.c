@@ -11,7 +11,7 @@ struct Node{
 };
 
 NODE create_node(int val){
-    NODE n = (NODE)malloc(sizeof(struct Node*));
+    NODE n = (NODE)malloc(sizeof(struct Node));
     n->data = val;
     n->lft = NULL;
     n->ryt = NULL;

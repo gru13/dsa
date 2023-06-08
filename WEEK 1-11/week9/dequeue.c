@@ -22,7 +22,6 @@ int inRange(int f, int e, int i){
 struct DQ* create(int max){
     struct DQ* D = (struct DQ*)malloc(sizeof(struct DQ*));
     D->front = -1;
-    // printf("asdfghjkl;");
     D->last = -1;
     D->n_ele = 0;
     D->q = (int*)malloc(sizeof(int*)*max);
@@ -121,10 +120,10 @@ struct DQ* remove_end(struct DQ* D){
     }
     return D;
 }
-int main(void){
+int demo(void){
     struct DQ* D = create(5);
     D = add_start(D,4);
-    printf("\n--%d--\n");₹
+    printf("\n--%d--\n");
     // D = add_end(D,1);
     // D = add_end(D,2);
     // D = add_end(D,3);
@@ -135,4 +134,58 @@ int main(void){
     // D = remove_start(D);
     // D = add_end(D,5);
     display(D);
+}
+int main() {
+    int len;
+    printf("Creating Deque, Enter max Length: ");
+    scanf("%d", &len);
+    struct DQ* D = create(len);
+
+    int option, exit_status = 0;
+    do {
+        printf("Select the below option:\n\n");
+        printf("1. Display the Deque\n");
+        printf("2. Add element at the front\n");
+        printf("3. Add element at the end\n");
+        printf("4. Remove element from the front\n");
+        printf("5. Remove element from the end\n");
+        printf("6. Exit\n\nEnter Your option: ");
+        scanf("%d", &option);
+        printf("\n--------------------------------------------------------------\n\n");
+
+        int val;
+        switch (option) {
+            case 1:
+                display(D);
+                break;
+            case 2:
+                printf("Enter the value to add at the front: ");
+                scanf("%d", &val);
+                D = add_start(D, val);
+                break;
+            case 3:
+                printf("Enter the value to add at the end: ");
+                scanf("%d", &val);
+                D = add_end(D, val);
+                break;
+            case 4:
+                printf("Removing element from the front\n");
+                D = remove_start(D);
+                break;
+            case 5:
+                printf("Removing element from the end\n");
+                D = remove_end(D);
+                break;
+            case 6:
+                printf("Exiting...\n");
+                exit_status = 1;
+                break;
+            default:
+                printf("Enter a valid option\n");
+                break;
+        }
+        printf("\n--------------------------------------------------------------\n\n");
+    } while (exit_status != 1);
+
+    return 0;
 }
