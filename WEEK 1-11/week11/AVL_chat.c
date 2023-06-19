@@ -49,7 +49,7 @@ struct Node* rightRotate(struct Node* y) {
 }
 
 // Function to lft rotate a subtree rooted with x
-struct Node* lftRotate(struct Node* x) {
+struct Node* leftRotate(struct Node* x) {
     struct Node* y = x->ryt;
     struct Node* T2 = y->lft;
 
@@ -134,18 +134,18 @@ struct Node* deleteNode(struct Node* root, int data) {
 
     // Lft Right Case
     if (balance > 1 && getBalance(root->lft) < 0) {
-        root->lft = lftRotate(root->lft);
+        root->lft = leftRotate(root->lft);
         return rightRotate(root);
     }
 
     // Right Right Case
     if (balance < -1 && getBalance(root->ryt) <= 0)
-        return lftRotate(root);
+        return leftRotate(root);
 
     // Right Lft Case
     if (balance < -1 && getBalance(root->ryt) > 0) {
         root->ryt = rightRotate(root->ryt);
-        return lftRotate(root);
+        return leftRotate(root);
     }
 
     return root;
@@ -176,18 +176,18 @@ struct Node* insertNode(struct Node* root, int data) {
 
     // Lft Right Case
     if (balance > 1 && data > root->lft->data) {
-        root->lft = lftRotate(root->lft);
+        root->lft = leftRotate(root->lft);
         return rightRotate(root);
     }
     // Right Right Case
     if (balance < -1 && data > root->ryt->data)
-        return lftRotate(root);
+        return leftRotate(root);
 
 
     // Right Lft Case
     if (balance < -1 && data < root->ryt->data) {
         root->ryt = rightRotate(root->ryt);
-        return lftRotate(root);
+        return leftRotate(root);
     }
 
     // Return the new root
