@@ -72,32 +72,33 @@ int getBalance(struct Node* node) {
     return getHeight(node->lft) - getHeight(node->ryt);
 }
 
-struct Node* balanceTheNode(struct Node* root){
+struct Node* balanceTheNode(struct Node* root) {
     // Get the balance factor of the current node
     int balance = getBalance(root);
 
-    // Lft Lft Case
+    // Left Left Cas
     if (balance > 1 && getBalance(root->lft) >= 0)
-        return rightRotate(root);
+        return rotateRight(root);
 
-    // Lft Right Case
+    // Left Right Case
     if (balance > 1 && getBalance(root->lft) < 0) {
-        root->lft = leftRotate(root->lft);
-        return rightRotate(root);
+        root->lft = rotateLeft(root->lft);
+        return rotateRight(root);
     }
 
     // Right Right Case
     if (balance < -1 && getBalance(root->ryt) <= 0)
-        return leftRotate(root);
+        return rotateLeft(root);
 
-    // Right Lft Case
+    // Right Left Case
     if (balance < -1 && getBalance(root->ryt) > 0) {
-        root->ryt = rightRotate(root->ryt);
-        return leftRotate(root);
+        root->ryt = rotateRight(root->ryt);
+        return rotateLeft(root);
     }
 
     return root;
 }
+
 // Function to find the minimum value node in a given AVL tree
 struct Node* minValueNode(struct Node* node) {
     struct Node* current = node;
