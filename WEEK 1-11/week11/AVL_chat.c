@@ -3,9 +3,9 @@
 
 // Structure for a node in AVL tree
 struct Node {
-    int key;
-    struct Node* left;
-    struct Node* right;
+    int data;
+    struct Node* lft;
+    struct Node* ryt;
     int height;
 };
 
@@ -21,45 +21,45 @@ int max(int a, int b) {
     return (a > b) ? a : b;
 }
 
-// Function to create a new node with the given key
-struct Node* createNode(int key) {
+// Function to create a new node with the given data
+struct Node* createNode(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->key = key;
-    newNode->left = NULL;
-    newNode->right = NULL;
+    newNode->data = data;
+    newNode->lft = NULL;
+    newNode->ryt = NULL;
     newNode->height = 1;
     return newNode;
 }
 
 // Function to right rotate a subtree rooted with y
 struct Node* rightRotate(struct Node* y) {
-    struct Node* x = y->left;
-    struct Node* T2 = x->right;
+    struct Node* x = y->lft;
+    struct Node* T2 = x->ryt;
 
     // Perform rotation
-    x->right = y;
-    y->left = T2;
+    x->ryt = y;
+    y->lft = T2;
 
     // Update heights
-    y->height = max(getHeight(y->left), getHeight(y->right)) + 1;
-    x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
+    y->height = max(getHeight(y->lft), getHeight(y->ryt)) + 1;
+    x->height = max(getHeight(x->lft), getHeight(x->ryt)) + 1;
 
     // Return the new root
     return x;
 }
 
-// Function to left rotate a subtree rooted with x
-struct Node* leftRotate(struct Node* x) {
-    struct Node* y = x->right;
-    struct Node* T2 = y->left;
+// Function to lft rotate a subtree rooted with x
+struct Node* lftRotate(struct Node* x) {
+    struct Node* y = x->ryt;
+    struct Node* T2 = y->lft;
 
     // Perform rotation
-    y->left = x;
-    x->right = T2;
+    y->lft = x;
+    x->ryt = T2;
 
     // Update heights
-    x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
-    y->height = max(getHeight(y->left), getHeight(y->right)) + 1;
+    x->height = max(getHeight(x->lft), getHeight(x->ryt)) + 1;
+    y->height = max(getHeight(y->lft), getHeight(y->ryt)) + 1;
 
     // Return the new root
     return y;
@@ -69,33 +69,33 @@ struct Node* leftRotate(struct Node* x) {
 int getBalance(struct Node* node) {
     if (node == NULL)
         return 0;
-    return getHeight(node->left) - getHeight(node->right);
+    return getHeight(node->lft) - getHeight(node->ryt);
 }
 
 // Function to find the minimum value node in a given AVL tree
 struct Node* minValueNode(struct Node* node) {
     struct Node* current = node;
-    while (current->left != NULL)
-        current = current->left;
+    while (current->lft != NULL)
+        current = current->lft;
     return current;
 }
 
 // Function to perform deletion of a node in an AVL tree
-struct Node* deleteNode(struct Node* root, int key) {
+struct Node* deleteNode(struct Node* root, int data) {
     // Perform the normal BST deletion
     if (root == NULL)
         return root;
 
-    if (key < root->key)
-        root->left = deleteNode(root->left, key);
-    else if (key > root->key)
-        root->right = deleteNode(root->right, key);
+    if (data < root->data)
+        root->lft = deleteNode(root->lft, data);
+    else if (data > root->data)
+        root->ryt = deleteNode(root->ryt, data);
     else {
         // Node to be deleted is found
 
         // Case 1: Node has no child or only one child
-        if (root->left == NULL || root->right == NULL) {
-            struct Node* temp = root->left ? root->left : root->right;
+        if (root->lft == NULL || root->ryt == NULL) {
+            struct Node* temp = root->lft ? root->lft : root->ryt;
 
             // No child case
             if (temp == NULL) {
@@ -108,13 +108,13 @@ struct Node* deleteNode(struct Node* root, int key) {
         } else {
             // Case 2: Node has two children
 
-            struct Node* temp = minValueNode(root->right);
+            struct Node* temp = minValueNode(root->ryt);
 
             // Copy the inorder successor's data to this node
-            root->key = temp->key;
+            root->data = temp->data;
 
             // Delete the inorder successor
-            root->right = deleteNode(root->right, temp->key);
+            root->ryt = deleteNode(root->ryt, temp->data);
         }
     }
 
@@ -123,71 +123,71 @@ struct Node* deleteNode(struct Node* root, int key) {
         return root;
 
     // Update the height of the current node
-    root->height = 1 + max(getHeight(root->left), getHeight(root->right));
+    root->height = 1 + max(getHeight(root->lft), getHeight(root->ryt));
 
     // Get the balance factor of the current node
     int balance = getBalance(root);
 
-    // Left Left Case
-    if (balance > 1 && getBalance(root->left) >= 0)
+    // Lft Lft Case
+    if (balance > 1 && getBalance(root->lft) >= 0)
         return rightRotate(root);
 
-    // Left Right Case
-    if (balance > 1 && getBalance(root->left) < 0) {
-        root->left = leftRotate(root->left);
+    // Lft Right Case
+    if (balance > 1 && getBalance(root->lft) < 0) {
+        root->lft = lftRotate(root->lft);
         return rightRotate(root);
     }
 
     // Right Right Case
-    if (balance < -1 && getBalance(root->right) <= 0)
-        return leftRotate(root);
+    if (balance < -1 && getBalance(root->ryt) <= 0)
+        return lftRotate(root);
 
-    // Right Left Case
-    if (balance < -1 && getBalance(root->right) > 0) {
-        root->right = rightRotate(root->right);
-        return leftRotate(root);
+    // Right Lft Case
+    if (balance < -1 && getBalance(root->ryt) > 0) {
+        root->ryt = rightRotate(root->ryt);
+        return lftRotate(root);
     }
 
     return root;
 }
 
 // Function to insert a node into an AVL tree
-struct Node* insertNode(struct Node* root, int key) {
+struct Node* insertNode(struct Node* root, int data) {
     // Perform the normal BST insertion
     if (root == NULL)
-        return createNode(key);
+        return createNode(data);
 
-    if (key < root->key)
-        root->left = insertNode(root->left, key);
-    else if (key > root->key)
-        root->right = insertNode(root->right, key);
+    if (data < root->data)
+        root->lft = insertNode(root->lft, data);
+    else if (data > root->data)
+        root->ryt = insertNode(root->ryt, data);
     else
-        return root; // Duplicate keys not allowed
+        return root; // Duplicate datas not allowed
 
     // Update the height of the ancestor node
-    root->height = 1 + max(getHeight(root->left), getHeight(root->right));
+    root->height = 1 + max(getHeight(root->lft), getHeight(root->ryt));
 
     // Get the balance factor of the ancestor node to check for imbalance
     int balance = getBalance(root);
 
-    // Left Left Case
-    if (balance > 1 && key < root->left->key)
+    // Lft Lft Case
+    if (balance > 1 && data < root->lft->data)
         return rightRotate(root);
 
-    // Right Right Case
-    if (balance < -1 && key > root->right->key)
-        return leftRotate(root);
-
-    // Left Right Case
-    if (balance > 1 && key > root->left->key) {
-        root->left = leftRotate(root->left);
+    // Lft Right Case
+    if (balance > 1 && data > root->lft->data) {
+        root->lft = lftRotate(root->lft);
         return rightRotate(root);
     }
+    // Right Right Case
+    if (balance < -1 && data > root->ryt->data)
+        return lftRotate(root);
 
-    // Right Left Case
-    if (balance < -1 && key < root->right->key) {
-        root->right = rightRotate(root->right);
-        return leftRotate(root);
+
+    // Right Lft Case
+    if (balance < -1 && data < root->ryt->data) {
+        root->ryt = rightRotate(root->ryt);
+        return lftRotate(root);
     }
 
     // Return the new root
@@ -197,9 +197,9 @@ struct Node* insertNode(struct Node* root, int key) {
 // Function to print the AVL tree in in-order traversal
 void inorderTraversal(struct Node* root) {
     if (root != NULL) {
-        inorderTraversal(root->left);
-        printf("%d ", root->key);
-        inorderTraversal(root->right);
+        inorderTraversal(root->lft);
+        printf("%d ", root->data);
+        inorderTraversal(root->ryt);
     }
 }
 
