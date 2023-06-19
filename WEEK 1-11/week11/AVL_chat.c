@@ -72,6 +72,32 @@ int getBalance(struct Node* node) {
     return getHeight(node->lft) - getHeight(node->ryt);
 }
 
+struct Node* balanceTheNode(struct Node* root){
+    // Get the balance factor of the current node
+    int balance = getBalance(root);
+
+    // Lft Lft Case
+    if (balance > 1 && getBalance(root->lft) >= 0)
+        return rightRotate(root);
+
+    // Lft Right Case
+    if (balance > 1 && getBalance(root->lft) < 0) {
+        root->lft = leftRotate(root->lft);
+        return rightRotate(root);
+    }
+
+    // Right Right Case
+    if (balance < -1 && getBalance(root->ryt) <= 0)
+        return leftRotate(root);
+
+    // Right Lft Case
+    if (balance < -1 && getBalance(root->ryt) > 0) {
+        root->ryt = rightRotate(root->ryt);
+        return leftRotate(root);
+    }
+
+    return root;
+}
 // Function to find the minimum value node in a given AVL tree
 struct Node* minValueNode(struct Node* node) {
     struct Node* current = node;
@@ -125,30 +151,7 @@ struct Node* deleteNode(struct Node* root, int data) {
     // Update the height of the current node
     root->height = 1 + max(getHeight(root->lft), getHeight(root->ryt));
 
-    // Get the balance factor of the current node
-    int balance = getBalance(root);
-
-    // Lft Lft Case
-    if (balance > 1 && getBalance(root->lft) >= 0)
-        return rightRotate(root);
-
-    // Lft Right Case
-    if (balance > 1 && getBalance(root->lft) < 0) {
-        root->lft = leftRotate(root->lft);
-        return rightRotate(root);
-    }
-
-    // Right Right Case
-    if (balance < -1 && getBalance(root->ryt) <= 0)
-        return leftRotate(root);
-
-    // Right Lft Case
-    if (balance < -1 && getBalance(root->ryt) > 0) {
-        root->ryt = rightRotate(root->ryt);
-        return leftRotate(root);
-    }
-
-    return root;
+    return balanceTheNode(root);
 }
 
 // Function to insert a node into an AVL tree
@@ -166,32 +169,8 @@ struct Node* insertNode(struct Node* root, int data) {
 
     // Update the height of the ancestor node
     root->height = 1 + max(getHeight(root->lft), getHeight(root->ryt));
-
-    // Get the balance factor of the ancestor node to check for imbalance
-    int balance = getBalance(root);
-
-    // Lft Lft Case
-    if (balance > 1 && data < root->lft->data)
-        return rightRotate(root);
-
-    // Lft Right Case
-    if (balance > 1 && data > root->lft->data) {
-        root->lft = leftRotate(root->lft);
-        return rightRotate(root);
-    }
-    // Right Right Case
-    if (balance < -1 && data > root->ryt->data)
-        return leftRotate(root);
-
-
-    // Right Lft Case
-    if (balance < -1 && data < root->ryt->data) {
-        root->ryt = rightRotate(root->ryt);
-        return leftRotate(root);
-    }
-
-    // Return the new root
-    return root;
+    
+    return balanceTheNode(root);
 }
 
 // Function to print the AVL tree in in-order traversal
