@@ -183,31 +183,24 @@ void inorderTraversal(struct Node* root) {
     }
 }
 
+void postorderTraversal(struct Node* root) {
+    if (root != NULL) {
+        postorderTraversal(root->lft);
+        postorderTraversal(root->ryt);
+        printf("%d ", root->data);
+    }
+}
 // Driver code
 int main() {
     struct Node* root = NULL;
-
-    // Inserting nodes into the AVL tree
-    root = insertNode(root, 10);
-    root = insertNode(root, 20);
-    root = insertNode(root, 30);
-    root = insertNode(root, 40);
-    root = insertNode(root, 50);
-    root = insertNode(root, 25);
-
-    // Printing the AVL tree
-    printf("In-order traversal of the AVL tree: ");
-    inorderTraversal(root);
-    printf("\n");
-
-    // Deleting nodes from the AVL tree
-    root = deleteNode(root, 30);
-    root = deleteNode(root, 40);
-
-    // Printing the AVL tree after deletion
-    printf("In-order traversal after deletion: ");
-    inorderTraversal(root);
-    printf("\n");
-
+    int arr[] = {9,6,5,8,7,10};
+    for(int i =0;i<6;i++){
+        root = insertNode(root, arr[i]);
+    }
+    postorderTraversal(root);
     return 0;
 }
+
+
+// Function to print the AVL tree in post-order traversal
+
