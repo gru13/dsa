@@ -75,7 +75,7 @@ struct Node* rightRotate(struct Node* y) {
     x->h = max(getHeight(x->lft), getHeight(x->ryt)) + 1;
 
     // Return the new root
-    return x;
+    return y;
 }
 
 int getBalance(struct Node* root) {
