@@ -146,6 +146,42 @@ void preorderTraversal(struct Node* root) {
     preorderTraversal(root->ryt);
 }
 
+struct Node* minValueNode(struct Node* node) {
+    struct Node* current = node;
+    while (current && current->lft != NULL)
+        current = current->lft;
+    return current;
+}
+
+struct Node* deleteNode(struct Node* root, int data) {
+    if (root == NULL)
+        return root;
+    if (data < root->data)
+        root->lft = deleteNode(root->lft, data);
+    else if (data > root->data)
+        root->ryt = deleteNode(root->ryt, data);
+    else {
+        if ((root->lft == NULL) || (root->ryt == NULL)) {
+            struct Node* temp = root->lft ? root->lft : root->ryt;
+            if (temp == NULL) {
+                temp = root;
+                root = NULL;
+            } else
+                *root = *temp;
+            free(temp);
+        } else {
+            struct Node* temp = minValueNode(root->ryt);
+            root->data = temp->data;
+            root->ryt = deleteNode(root->ryt, temp->data);
+        }
+    }
+    if (root == NULL)
+        return root;
+    root->h = max(getHeight(root->lft), getHeight(root->ryt)) + 1;
+    root = balanceTheNode(root);
+    return root;
+}
+
 int main() {
     struct Node* root = NULL;
     // int arr[] = {21, 26, 30, 9, 4, 14, 28, 18, 15};
@@ -157,10 +193,12 @@ int main() {
         root = insert(root, arr[i]);
     }
     root = deleteNode(root,5);
-    postorderTraversal(root);
+    root = deleteNode(root,9);
+    root = insert(root,0);
+    preorderTraversal(root);
     printf("\n");
     inorderTraversal(root);
     printf("\n");
-    preorderTraversal(root);
+    postorderTraversal(root);
     return 0;
 }
