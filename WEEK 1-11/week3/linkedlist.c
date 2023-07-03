@@ -38,7 +38,7 @@ struct Node* insert (struct Node* head, int index, int val){
         newNode->next = head;
         head = newNode; 
     }
-    else if(index == length-1 || index == -1) {
+    else if(index == length || index == -1) {
         struct Node* tmp = head;
         while (tmp->next != NULL)
         {

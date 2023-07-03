@@ -27,7 +27,7 @@ int LEN(struct Node* last){
     }     
     return len;
 }
-
+ 
 void display(struct Node* last){
     int len = LEN(last);
     if(len == 0){

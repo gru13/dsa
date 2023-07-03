@@ -16,7 +16,7 @@ int **create(int i, int j) {
 }
 
 int **create_empty(int i, int j) {
-    int **arr = malloc(i * sizeof(int *));
+    int **arr = malloc(i * sizeof(int));
     for (int a = 0; a < i; a++) {
         arr[a] = malloc(j * sizeof(int));
     }
